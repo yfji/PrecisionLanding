@@ -22,6 +22,8 @@
 using namespace std;
 using namespace cv;
 
+typedef unsigned int uint;
+
 void createSamples(string& seed, string& dir, int N=20);
 
 Mat getHSVImage(const Mat& src);

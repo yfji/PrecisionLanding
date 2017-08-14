@@ -212,5 +212,33 @@ Mat loadTemplate(const string& temp_file){
 }
 
 int KNN(Mat& img, Mat& _tmpl, vector<Rect>& contours){
-	return 0;
+	int _tmpl_h=TEMP_H;
+	int _tmpl_w=TEMP_W;
+
+	int min_diff_=1e7;
+	int min_index=0;
+
+	for(uint i=0;i<contours.size();++i){
+		Rect& c=contours[i];
+		Mat roi=img(c);
+		resize(roi,roi,Size(_tmpl_w,_tmpl_h));
+
+		threshold(roi,roi,250,255,THRESH_BINARY);
+
+		int min_diff=1e7;
+		for(int j=0;j<_tmpl.rows;++j){
+			Mat _t=_tmpl.row(j);
+			int diff=0;
+			for(int k=0;k<_tmpl.cols;++k){
+				if(roi.data[k]!=_t.data[k]){	++diff;	}
+			}
+			if(diff<min_diff){	min_diff=diff;	}
+			cout<<diff<<endl;
+		}
+		if(min_diff<min_diff_){
+			min_index=i;
+			min_diff_=min_diff;
+		}
+	}
+	return min_index;
 }
