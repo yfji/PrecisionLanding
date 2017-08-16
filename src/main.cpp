@@ -8,10 +8,10 @@
 #include "landing.h"
 
 int main(int argc, char** argv){
-	string image_path="I:/TestOpenCV/Images/H_label_1.jpg";
+	string image_path="I:/TestOpenCV/Images/haier.jpg";
 	string seed="./templates/h_0.jpg";
 	string dir="./templates/";
-	int ksize=7;
+	int ksize=1;
 
 	Mat original=imread(image_path);
 	Mat _tmpl;
@@ -39,7 +39,8 @@ int main(int argc, char** argv){
 		H_index=KNN(bi, _tmpl, contours);
 
 	//for(uint k=0;k<contours.size();++k){
-	rectangle(rgbImage, contours[H_index], Scalar(0,255,255),2);
+	if(H_index>=0)
+		rectangle(rgbImage, contours[H_index], Scalar(0,255,255),2);
 	//}
 
 	imshow("rgb", rgbImage);

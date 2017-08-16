@@ -240,5 +240,8 @@ int KNN(Mat& img, Mat& _tmpl, vector<Rect>& contours){
 			min_diff_=min_diff;
 		}
 	}
+	if(min_diff_>250){
+		min_index=-1;
+	}
 	return min_index;
 }
