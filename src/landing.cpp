@@ -32,12 +32,19 @@ void createSamples(string& seed, string& dir, int N){
 	}
 }
 
-Mat getHSVImage(const Mat& src){
+Mat getHSVImage(const Mat& src, const char* chn){
 	Mat hsv;
 	cvtColor(src, hsv, CV_BGR2HSV);
 	vector<Mat> hsvPlane;
 	split(hsv,hsvPlane);
-	return hsvPlane[1];
+	Mat ret;
+	if(strcmp(chn,"s")==0){
+		ret=hsvPlane[1];
+	}
+	else if(strcmp(chn,"v")==0){
+		ret=hsvPlane[2];
+	}
+	return ret;
 }
 
 Mat alignImage(const Mat& src, int size){
@@ -183,7 +190,7 @@ Mat loadTemplate(const string& temp_file){
 
 	int w,h;
 	in>>h>>w;
-	cout<<w<<","<<h<<endl;
+	//cout<<w<<","<<h<<endl;
 
 	Mat _tmpl(Size(w,h), CV_8UC1);
 	int row=0;

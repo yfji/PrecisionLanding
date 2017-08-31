@@ -26,7 +26,7 @@ typedef unsigned int uint;
 
 void createSamples(string& seed, string& dir, int N=20);
 
-Mat getHSVImage(const Mat& src);
+Mat getHSVImage(const Mat& src, const char* chn="s");
 
 Mat alignImage(const Mat& src, int size);
 
