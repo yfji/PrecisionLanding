@@ -8,7 +8,7 @@
 #include "landing.h"
 
 int main(int argc, char** argv){
-	string image_path="I:/TestOpenCV/Images/haier3.jpg";
+	string image_path="I:/TestOpenCV/Images/white_h_1.jpg";
 	string seed="./templates/h_0.jpg";
 	string dir="./templates/";
 	int ksize=1;

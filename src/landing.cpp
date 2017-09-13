@@ -89,6 +89,7 @@ void getContours(Mat& biImg, vector<Rect>& contours){
 		}
 		contours.push_back(Rect(bbox));
 	}
+	cvReleaseMemStorage(&pContour);
 }
 
 Mat ToTemplate(Mat& src){
